@@ -20,6 +20,12 @@ export class Presentation {
         deleteB.className = "btn btn-danger";
         deleteB.onclick = () => { op.deleteRow(x); };
         cell.appendChild(deleteB);
+        cell = document.createElement('td');
+        row.appendChild(cell);
+        let mDelete = document.createElement('input');
+        mDelete.type = "checkbox";
+        mDelete.name = "check";
+        cell.appendChild(mDelete);
     }
     //Fetches buttons back after save and cancel operations are executed
     fetchButton(x, op) {

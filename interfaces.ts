@@ -28,3 +28,8 @@ export interface ButtonPresentation<T>
     fetchButton(rowId: T, obj: Operations): void;
 }
 
+
+export interface Validation<T>
+{
+    validateFields(obj: T): void;
+}

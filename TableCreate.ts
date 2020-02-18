@@ -17,6 +17,8 @@ export class TableCreation implements Creation<Employee>
     {
         this.buttonObject = new Presentation();
         this.operationObject = new Operations();
+        let mButton = document.getElementById("mDeleteButton") as HTMLInputElement;
+        mButton.addEventListener("click", () => { this.operationObject.multipleDelete(); });
     }
 
 
@@ -35,6 +37,7 @@ export class TableCreation implements Creation<Employee>
          
             loadB.value = "Refresh";
             document.getElementById('NewButton')!.style.display = "block";
+            document.getElementById('mDeleteButton')!.style.display = "block";
             let table = document.getElementsByTagName('table')[0];
             let tableHeader = document.createElement('thead');
             let tableBody = document.createElement('tbody')
@@ -72,23 +75,29 @@ export class TableCreation implements Creation<Employee>
         row.appendChild(head);
         head.innerHTML = "Operations";
 
+
+        head = document.createElement('th')
+        row.appendChild(head);
+        head.innerHTML = "MultipleDelete";
+
         let n = employee.length;
 
         for (let i = 0; i < n; i++)
         {
             tableBody.appendChild(row = document.createElement('tr'));
             row.setAttribute("id", i.toString());
-            this.addEmployee(row, employee[i]);
+            this.addEmployee(row,employee[i]);
             this.buttonObject.createButton(row, i.toString(),this.operationObject);
+        
         }
 
-        TableCreation.newid = n;
+        TableCreation.newid = n-1;
         
     }
 
 
     //Adds Employees one by one
-    addEmployee(row: HTMLTableRowElement, employee: Employee)
+    addEmployee(row: HTMLTableRowElement, employee : Employee)
     {  
         let cell = document.createElement('td');
         cell.innerHTML = employee.firstName;
@@ -106,11 +115,13 @@ export class TableCreation implements Creation<Employee>
         cell.innerHTML = employee.phone.toString();
         row.appendChild(cell);
         cell = document.createElement('td');
-        cell.innerHTML =Role[ employee.role];
+        cell.innerHTML =Role[employee.role];
         row.appendChild(cell);
         cell = document.createElement('td');
         cell.innerHTML = employee.address;   
         row.appendChild(cell); 
+
+        return employee;
     }
 
 }

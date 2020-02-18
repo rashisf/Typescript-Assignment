@@ -5,6 +5,8 @@ export class TableCreation {
     constructor() {
         this.buttonObject = new Presentation();
         this.operationObject = new Operations();
+        let mButton = document.getElementById("mDeleteButton");
+        mButton.addEventListener("click", () => { this.operationObject.multipleDelete(); });
     }
     //called when data is fetched
     create(employee) {
@@ -17,6 +19,7 @@ export class TableCreation {
         else {
             loadB.value = "Refresh";
             document.getElementById('NewButton').style.display = "block";
+            document.getElementById('mDeleteButton').style.display = "block";
             let table = document.getElementsByTagName('table')[0];
             let tableHeader = document.createElement('thead');
             let tableBody = document.createElement('tbody');
@@ -46,6 +49,9 @@ export class TableCreation {
         head = document.createElement('th');
         row.appendChild(head);
         head.innerHTML = "Operations";
+        head = document.createElement('th');
+        row.appendChild(head);
+        head.innerHTML = "MultipleDelete";
         let n = employee.length;
         for (let i = 0; i < n; i++) {
             tableBody.appendChild(row = document.createElement('tr'));
@@ -53,7 +59,7 @@ export class TableCreation {
             this.addEmployee(row, employee[i]);
             this.buttonObject.createButton(row, i.toString(), this.operationObject);
         }
-        TableCreation.newid = n;
+        TableCreation.newid = n - 1;
     }
     //Adds Employees one by one
     addEmployee(row, employee) {
@@ -78,6 +84,7 @@ export class TableCreation {
         cell = document.createElement('td');
         cell.innerHTML = employee.address;
         row.appendChild(cell);
+        return employee;
     }
 }
 TableCreation.headings = [];

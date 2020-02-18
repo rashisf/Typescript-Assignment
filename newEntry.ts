@@ -10,8 +10,8 @@ export class NewEntry
 
     constructor()
     {   
-        this.buttonObject = new Presentation;
-        this.operationObject = new Operations;
+        this.buttonObject = new Presentation();
+        this.operationObject = new Operations();
         let newButton = document.getElementById("NewButton") as HTMLInputElement;
         newButton.addEventListener("click",() => {this.newData()});
 
@@ -19,8 +19,11 @@ export class NewEntry
 
     newData()
     {
+        TableCreation.newid+= 1;
+        
         let row : HTMLTableRowElement, cell: HTMLTableDataCellElement;
         let rowId = TableCreation.newid.toString();
+        
         let tableBody = document.querySelector('tbody')!;
         tableBody.appendChild(row = document.createElement('tr'));
         row.setAttribute("id", rowId);
@@ -30,7 +33,6 @@ export class NewEntry
 
         this.buttonObject.createButton(row, rowId,this.operationObject);
         this.operationObject.editRow(rowId);
-        
-        TableCreation.newid+= 1;
+      
     }
 }

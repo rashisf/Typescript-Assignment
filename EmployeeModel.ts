@@ -1,6 +1,7 @@
 export enum Role { Trainee, QA, Devops, Developer };
 
-export class Employee {
+export class Employee 
+{
     firstName: string;
     middleName: string;
     lastName: string;

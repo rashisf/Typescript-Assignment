@@ -4,8 +4,8 @@ import { NewEntry } from "./newEntry.js";
 
 
 //Implementation class is the main class which exeutes both Business and Presentation Logic
-class Implementation {
-
+class Implementation 
+{
     fetchObject: FetchLogic;
     createObject: TableCreation;
     newEntryObject: NewEntry;
