@@ -17,7 +17,7 @@ export class TableCreation implements Creation<Employee>
     {
         this.buttonObject = new Presentation();
         this.operationObject = new Operations();
-        let mButton = document.getElementById("mDeleteButton") as HTMLInputElement;
+        const mButton = document.getElementById("mDeleteButton") as HTMLInputElement;
         mButton.addEventListener("click", () => { this.operationObject.multipleDelete(); });
     }
 
